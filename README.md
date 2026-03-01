@@ -134,3 +134,33 @@ Expected response:
 - Jupyter
 - MongoDB for VS Code
 - Flutter
+
+## Deploy on Render
+
+1. Push this repository to GitHub.
+2. Create a new **Web Service** in Render from this repository.
+3. Use these settings:
+   - **Environment:** `Python`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `python api/app.py` (or use included `Procfile`)
+   - **Branch:** `main`
+4. Add environment variables in Render:
+   - `MONGODB_URI`
+   - `MONGODB_DATABASE=crime_db`
+   - `MONGODB_COLLECTION=crime_data`
+5. Deploy and verify:
+   - `GET /health` should return `{"status":"API running"}`
+
+### Frontend API URL for Cloud
+
+In browser console (or inline script), set:
+
+```js
+window.API_BASE_URL = "https://<your-render-service>.onrender.com";
+```
+
+Then the frontend will call cloud API endpoints automatically.
+
+### Spark Note for Render
+
+Render free/starter environments are not ideal for heavy Spark jobs. Keep Spark preprocessing for local/offline runs (`python main.py`) and use the trained model for API predictions in production.

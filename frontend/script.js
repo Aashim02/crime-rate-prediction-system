@@ -1,10 +1,12 @@
+const API_BASE_URL = window.API_BASE_URL || "http://127.0.0.1:5000";
+
 async function predictCrime() {
   const crime_type = document.getElementById("crime_type").value;
   const area = document.getElementById("area").value;
   const time = document.getElementById("time").value;
   const month = document.getElementById("month").value;
 
-  const response = await fetch("http://127.0.0.1:5000/predict", {
+  const response = await fetch(`${API_BASE_URL}/predict`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

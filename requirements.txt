@@ -1,6 +1,6 @@
 pandas
 numpy
-pymongo
+pymongo[srv]
 pyspark
 scikit-learn
 matplotlib
@@ -8,3 +8,4 @@ flask
 flask-cors
 joblib
 python-dotenv
+dnspython
